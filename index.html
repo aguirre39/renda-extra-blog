@@ -929,35 +929,41 @@
                                 </label>
                             </div>
                         </div>
-
-                        <div id="secao-comentarios" class="content-section mt-16 animate-on-scroll is-visible" style="opacity: 1; transform: none;">
-                            <h2><i class="fas fa-comments mr-2 text-indigo-400"></i>Comentários da Comunidade</h2>
-                            <div class="bg-white text-slate-900 rounded-xl p-4 md:p-6 shadow-2xl border border-slate-200 mt-6 overflow-hidden">
-                                <div class="text-center mb-6">
-                                    <h4 class="text-2xl font-bold text-slate-800 mb-2">Deixe sua opinião</h4>
-                                    <p class="text-slate-600 text-sm">Participe da conversa usando sua conta do Facebook.</p>
-                                </div>
-                                
-                                <!-- FIX: Wrapper adicionado para garantir largura -->
-                                <div class="w-full bg-slate-50 rounded min-h-[200px] flex justify-center">
-                                    <!-- FIX: Adicionado data-mobile="true" e data-width="100%" -->
-                                    <!-- data-mobile="true" força a versão otimizada para celular que lida melhor com redirects de login -->
-                                    <div class="fb-comments" 
-                                        data-href="https://vendasonlinemarketing.com.br/blog/" 
-                                        data-width="100%" 
-                                        data-numposts="10" 
-                                        data-mobile="true"
-                                        data-colorscheme="light">
+                        <!-- SEÇÃO DE COMENTÁRIOS CORRIGIDA -->
+                        <section class="py-12">
+                            <div class="container mx-auto px-4 md:px-6">
+                                <div class="w-full lg:w-3/4 mx-auto prose-custom">
+                                    
+                                    <div id="secao-comentarios" class="content-section mt-16 animate-on-scroll is-visible" style="opacity: 1; transform: none;">
+                                        <h2><i class="fas fa-comments mr-2 text-indigo-400"></i>Comentários da Comunidade</h2>
+                                        <div class="bg-white text-slate-900 rounded-xl p-4 md:p-6 shadow-2xl border border-slate-200 mt-6 overflow-hidden">
+                                            <div class="text-center mb-6">
+                                                <h4 class="text-2xl font-bold text-slate-800 mb-2">Deixe sua opinião</h4>
+                                                <p class="text-slate-600 text-sm">Participe da conversa usando sua conta do Facebook.</p>
+                                            </div>
+                                            
+                                            <!-- FIX: Wrapper adicionado para garantir largura -->
+                                            <div class="w-full bg-slate-50 rounded min-h-[200px] flex justify-center">
+                                                <!-- FIX: Adicionado data-mobile="true" e data-width="100%" -->
+                                                <!-- data-mobile="true" força a versão otimizada para celular que lida melhor com redirects de login -->
+                                                <div class="fb-comments" 
+                                                    data-href="https://vendasonlinemarketing.com.br/blog/" 
+                                                    data-width="100%" 
+                                                    data-numposts="10" 
+                                                    data-mobile="true"
+                                                    data-colorscheme="light">
+                                                </div>
+                                            </div>
+                                            
+                                            <p class="text-xs text-gray-400 mt-4 text-center">
+                                                
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <p class="text-xs text-gray-400 mt-4 text-center">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+                                </div>
+                            </div>
+                        </section>
                 </article>
                 </div>
             </div>
@@ -1156,7 +1162,7 @@
         </div>
     </footer>
 
-    <script>
+     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -1308,13 +1314,39 @@
             });
             configurarRastreamentoDeCliques();
 
-            // FIX: Script para forçar redimensionamento responsivo do plugin do Facebook
-            // Mantido aqui para garantir que a correção do Android continue funcionando
+            // -------------------------------------------------------------
+            // FIX DEFINITIVO FACEBOOK MOBILE (SENIOR FIX)
+            // -------------------------------------------------------------
+            
+            // 1. Inicialização Avançada do SDK (Evita o erro de "App ID Missing")
+            window.fbAsyncInit = function() {
+                FB.init({
+                  appId            : '853076630883693', // IMPORTANTE: Substitua pelo seu App ID real (ex: '1234567890')
+                  autoLogAppEvents : true,
+                  xfbml            : true,
+                  version          : 'v19.0',
+                  cookie           : true // Habilita cookies para permitir que o servidor acesse a sessão
+                });
+                
+                // Força o re-parse inicial para garantir renderização
+                FB.XFBML.parse();
+            };
+
+            // 2. Carregador Assíncrono do SDK (Padrão recomendado pelo Facebook)
+            (function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "https://connect.facebook.net/pt_BR/sdk.js";
+                 fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            // 3. Listener de Redimensionamento para corrigir bugs visuais no Android
             window.addEventListener('resize', function() {
                 if (typeof FB !== 'undefined') {
                     setTimeout(function() {
                         FB.XFBML.parse(); 
-                    }, 100);
+                    }, 500); // Delay aumentado para garantir que o teclado virtual tenha fechado
                 }
             });
         });
