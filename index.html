@@ -1161,22 +1161,29 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
-            mobileMenuButton.addEventListener('click', () => { 
-                mobileMenu.classList.toggle('hidden'); 
-            });
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => { 
+                    mobileMenu.classList.toggle('hidden'); 
+                });
+            }
             
             document.querySelectorAll('#mobile-menu a, #header a, .cta-button').forEach(link => {
                 link.addEventListener('click', (e) => {
                     const href = link.getAttribute('href');
                     if (href && href.startsWith('#')) {
-                        if (!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); }
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); }
                     }
                 });
             });
-            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const yearSpan = document.getElementById('year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
 
             const progressBar = document.getElementById('progress-bar');
             function updateProgressBar() {
+                if (!progressBar) return;
                 const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
                 const scrolled = window.scrollY;
                 if (scrollTotal > 0) {
@@ -1230,7 +1237,6 @@
                     const ctaText = document.getElementById('cta-text').value;
 
                     if (!productName || !targetAudience || !mainBenefit || !ctaText) {
-                        // Feedback simples caso falte algo
                         alert("Por favor, preencha todos os campos para gerar sua copy!");
                         return;
                     }
@@ -1301,6 +1307,16 @@
                 referrer: document.referrer 
             });
             configurarRastreamentoDeCliques();
+
+            // FIX: Script para forçar redimensionamento responsivo do plugin do Facebook
+            // Mantido aqui para garantir que a correção do Android continue funcionando
+            window.addEventListener('resize', function() {
+                if (typeof FB !== 'undefined') {
+                    setTimeout(function() {
+                        FB.XFBML.parse(); 
+                    }, 100);
+                }
+            });
         });
     </script>
 </body>
