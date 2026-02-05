@@ -18,7 +18,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
   <!-- CSP OTIMIZADA PARA FACEBOOK SEM BLOQUEIOS -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://cdn.tailwindcss.com https://www.googletagmanager.com https://jsonplaceholder.typicode.com https://graph.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://placehold.co data: blob: https://i.ytimg.com https://*.facebook.com https://*.fbcdn.net https://ui-avatars.com *; frame-src https://www.youtube.com https://www.facebook.com https://web.facebook.com https://m.facebook.com https://staticxx.facebook.com; connect-src 'self' https://*.facebook.com https://script.google.com https://*.googleusercontent.com https://www.google-analytics.com https://jsonplaceholder.typicode.com; object-src 'none'; frame-ancestors 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://cdn.tailwindcss.com https://www.googletagmanager.com https://jsonplaceholder.typicode.com https://graph.facebook.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://placehold.co data: blob: https://i.ytimg.com https://*.facebook.com https://*.fbcdn.net https://ui-avatars.com *; frame-src https://www.youtube.com https://www.facebook.com https://web.facebook.com https://m.facebook.com https://staticxx.facebook.com; connect-src 'self' https://*.facebook.com https://script.google.com https://*.googleusercontent.com https://www.google-analytics.com https://generativelanguage.googleapis.com https://jsonplaceholder.typicode.com; object-src 'none'; frame-ancestors 'none';">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -209,6 +209,20 @@
     /* Banner TikTok Específico */
     .tiktok-ad-banner { border: 2px solid #ff0050; background: linear-gradient(135deg, #010101 0%, #121212 100%); }
     .tiktok-ad-banner::after { content: "NEW"; background: #00f2ea; color: #000; }
+
+    /* --- ESTILOS DO AGENTE DE IA (CHATBOT) --- */
+    #ai-agent-container { z-index: 9999; }
+    #ai-chat-window {
+        transform-origin: bottom right;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+    .chat-message { animation: fadeIn 0.3s ease-out forwards; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
     </style>
 </head>
 <body class="bg-slate-900">
@@ -365,7 +379,7 @@
                     </aside>
 
                     <!-- CONTEÚDO PRINCIPAL -->
-                    <article class="w-full lg:w-3/4 prose-custom">
+                    <article class="w-full lg:w-3/4 prose-custom" id="blog-content-area">
                         <div class="mb-12 glass-effect rounded-lg p-6 md:p-8 border-l-4 border-amber-400 animate-on-scroll">
                             <h4 class="text-xl md:text-2xl font-bold text-white mb-3 flex items-center"><i class="fas fa-exclamation-triangle text-amber-400 mr-3"></i>Alerta de Realidade 2026</h4>
                             <p class="text-slate-300">Ferramentas de IA são commodities. A vantagem competitiva agora é a <strong>estratégia humana amplificada por agentes autônomos</strong>. Se você apenas "usa o ChatGPT", já está atrasado. Este guia é sobre integração profunda e resultados preditivos.</p>
@@ -406,30 +420,7 @@
                                 <li class="flex items-start"><i class="fas fa-check-circle text-teal-400 mr-3 mt-1.5"></i><span><strong>Hiper-Personalização:</strong> Dados em tempo real moldam a oferta para cada indivíduo. O "one-size-fits-all" acabou.</span></li>
                             </ul>
                         </div>
-                        <!--
-                        <div id="secao-videos" class="my-16 animate-on-scroll content-section">
-                            <div class="text-center mb-12">
-                                <i class="fas fa-play-circle text-5xl text-rose-400 mb-4"></i>
-                                <h3 class="text-3xl md:text-4xl font-bold text-white">Estratégias Práticas (Atualizado)</h3>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-8">
-                                <div class="glass-effect rounded-lg p-6">
-                                    <h4 class="text-xl md:text-2xl font-bold text-white mb-3">Automação com Agentes de IA</h4>
-                                    <p class="mb-6 text-slate-300">Descubra como criar fluxos de trabalho onde a IA executa tarefas complexas sozinha, gerando renda passiva real pelo celular.</p>
-                                    <div class="aspect-video rounded-lg overflow-hidden shadow-2xl border border-slate-700">
-                                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/HsnoRTWzKxE" title="RECEBA $240 POR DIA COM CHATGPT DE GRAÇA E PELO CELULAR - Passo a Passo (Ganhar dinheiro online)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                </div>
-                                <div class="glass-effect rounded-lg p-6">
-                                    <h4 class="text-xl md:text-2xl font-bold text-white mb-3">Vendas Automáticas & Kiwify</h4>
-                                    <p class="mb-6 text-slate-300">Aprenda a estratégia "Low-Ticket" para fazer seus primeiros R$1000 usando tráfego pago inteligente e ofertas validadas por dados.</p>
-                                    <div class="aspect-video rounded-lg overflow-hidden shadow-2xl border border-slate-700">
-                                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/FimM3xXsapg" title="KIWIFY: COMO FAZER OS PRIMEIROS R$1.000 EM 48 HORAS COM A KIWIFY NO AUTOMÁTICO (Dinheiro online)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        -->
+                        
                         <div id="secao1" class="content-section mt-16 animate-on-scroll">
                             <h2>Módulo 1: Mentalidade "AI-First"</h2>
                             <img src="imagens/MentalidadedeCrescimento.webp" alt="Cérebro com engrenagens simbolizando a mentalidade estratégica e o growth hacking mindset" class="rounded-lg my-6 w-full h-auto object-cover" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://placehold.co/800x400/1f2937/d1d5db?text=Erro+ao+carregar+imagem';">
@@ -1170,8 +1161,348 @@
         </div>
     </footer>
 
+    <!-- AGENTE DE IA - INTERFACE FLUTUANTE -->
+    <div id="ai-agent-container" class="fixed bottom-6 right-6 flex flex-col items-end">
+        <!-- Janela do Chat (Inicialmente Oculta) -->
+        <div id="ai-chat-window" class="hidden mb-4 w-[90vw] md:w-[380px] h-[500px] glass-effect rounded-2xl border border-slate-600/50 flex flex-col overflow-hidden bg-slate-900/95">
+            <!-- Header do Chat -->
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 flex justify-between items-center shadow-md shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm leading-tight">Assistente Nova Era</h4>
+                        <span class="text-xs text-indigo-200 block">Online • IA Especialista</span>
+                    </div>
+                </div>
+                <button id="close-chat-btn" class="text-white/80 hover:text-white transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Área de Mensagens -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 scroll-smooth">
+                <!-- Mensagem de Boas-vindas -->
+                <div class="chat-message flex items-start gap-3">
+                    <div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center shrink-0 border border-indigo-500/30">
+                        <i class="fas fa-robot text-indigo-400 text-xs"></i>
+                    </div>
+                    <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none text-sm border border-slate-700 shadow-sm">
+                        Olá! Sou o especialista em IA do blog. Pergunte-me sobre AIO, SEO, Agentes Autônomos ou estratégias para 2026! 🚀
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 border-t border-slate-700/50 bg-slate-900/50 shrink-0">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="user-input" 
+                           class="w-full bg-slate-800 text-slate-200 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-slate-700 placeholder-slate-500 transition-all"
+                           placeholder="Ex: O que é GEO no marketing?" autocomplete="off">
+                    <button type="submit" class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-lg hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+                <div class="text-[10px] text-center text-slate-600 mt-2">
+                    IA pode cometer erros. Verifique as informações importantes.
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão Flutuante (Toggle) -->
+        <button id="toggle-chat-btn" class="w-14 h-14 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 shadow-[0_0_20px_rgba(99,102,241,0.5)] flex items-center justify-center text-white text-2xl hover:scale-110 transition-transform duration-300 z-50 group">
+            <i class="fas fa-comment-dots group-hover:hidden"></i>
+            <i class="fas fa-chevron-up hidden group-hover:block text-xl"></i>
+            
+            <!-- Badge de Notificação -->
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-slate-900 animate-ping"></span>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-slate-900"></span>
+        </button>
+    </div>
+
      <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- CÓDIGO DO AGENTE DE IA (INTEGRAÇÃO APPS SCRIPT) ---
+            
+            // CONFIGURAÇÃO: Coloque aqui a URL do seu Web App do Apps Script
+            // Exemplo: 'https://script.google.com/macros/s/SEU-ID-AQUI/exec'
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGeEktJ6GcYhxy_kx2-EIR2-iZhLstNNnXMdTQ7zRbSPvYc5_4JnjqlUuOC0S_vfTC/exec"; 
+            
+            const chatWindow = document.getElementById('ai-chat-window');
+            const toggleBtn = document.getElementById('toggle-chat-btn');
+            const closeBtn = document.getElementById('close-chat-btn');
+            const chatForm = document.getElementById('chat-form');
+            const userInput = document.getElementById('user-input');
+            const messagesContainer = document.getElementById('chat-messages');
+            
+            let chatHistory = []; // Armazena histórico da conversa
+
+            // 1. Extração de Contexto do Blog (RAG Client-Side)
+            function extractBlogContent() {
+                const article = document.querySelector('article');
+                if (!article) return "Conteúdo não encontrado.";
+                
+                // Pega apenas texto relevante (títulos e parágrafos)
+                const elements = article.querySelectorAll('h1, h2, h3, h4, p, li');
+                let contextText = "";
+                elements.forEach(el => {
+                    contextText += el.innerText + "\n";
+                });
+                return contextText.substring(0, 30000); // Limite de segurança
+            }
+
+            const blogContext = extractBlogContent();
+
+            // 2. Lógica de UI (Abrir/Fechar)
+            function toggleChat() {
+                chatWindow.classList.toggle('hidden');
+                const isHidden = chatWindow.classList.contains('hidden');
+                toggleBtn.innerHTML = isHidden ? '<i class="fas fa-comment-dots"></i>' : '<i class="fas fa-chevron-down"></i>';
+                if (!isHidden) setTimeout(() => userInput.focus(), 100);
+            }
+
+            toggleBtn.addEventListener('click', toggleChat);
+            closeBtn.addEventListener('click', () => {
+                chatWindow.classList.add('hidden');
+                toggleBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
+            });
+
+            // 3. Renderização de Mensagens
+            function addMessage(text, sender) {
+                const div = document.createElement('div');
+                div.className = `chat-message flex items-start gap-3 ${sender === 'user' ? 'flex-row-reverse' : ''}`;
+                
+                const icon = sender === 'ai' 
+                    ? `<div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center shrink-0 border border-indigo-500/30"><i class="fas fa-robot text-indigo-400 text-xs"></i></div>`
+                    : `<div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center shrink-0"><i class="fas fa-user text-slate-300 text-xs"></i></div>`;
+
+                const bubbleStyle = sender === 'ai'
+                    ? 'bg-slate-800 text-slate-200 border-slate-700 rounded-tl-none'
+                    : 'bg-indigo-600 text-white border-indigo-500 rounded-tr-none';
+
+                // Formatação simples de markdown para HTML
+                const formattedText = text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+                    .replace(/\n/g, '<br>'); // Line breaks
+
+                div.innerHTML = `
+                    ${icon}
+                    <div class="${bubbleStyle} p-3 rounded-2xl text-sm border shadow-sm max-w-[85%] leading-relaxed">
+                        ${formattedText}
+                    </div>
+                `;
+                
+                messagesContainer.appendChild(div);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Adiciona ao histórico local
+                if (sender === 'user') {
+                    chatHistory.push({ role: 'user', text: text });
+                } else if (sender === 'ai') {
+                    chatHistory.push({ role: 'ai', text: text });
+                }
+            }
+
+            function addTypingIndicator() {
+                const div = document.createElement('div');
+                div.id = 'typing-indicator';
+                div.className = 'chat-message flex items-start gap-3';
+                div.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center shrink-0 border border-indigo-500/30"><i class="fas fa-robot text-indigo-400 text-xs"></i></div>
+                    <div class="bg-slate-800 p-4 rounded-2xl rounded-tl-none border border-slate-700 shadow-sm flex gap-1">
+                        <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
+                        <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
+                        <div class="w-2 h-2 bg-slate-400 rounded-full typing-dot"></div>
+                    </div>
+                `;
+                messagesContainer.appendChild(div);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                return div;
+            }
+
+            function removeTypingIndicator() {
+                const el = document.getElementById('typing-indicator');
+                if (el) el.remove();
+            }
+
+            // 4. Lógica de Inteligência (API vs Fallback)
+            async function getAIResponse(query) {
+                // MODO REAL: Via Apps Script
+                if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL.length > 10) {
+                    try {
+                        const response = await fetch(GOOGLE_SCRIPT_URL, {
+                            method: 'POST',
+                            mode: 'cors', // Necessário para ler a resposta JSON
+                            body: JSON.stringify({
+                                type: "chat", // Identificador opcional para o backend
+                                systemInstruction: `Olá! Sou o assistente do blog 'A Nova Era Digital' e adoro conversar sobre marketing digital, IA e estratégias que realmente funcionam. Pensa em mim como aquele amigo que já testou várias coisas e quer compartilhar o que aprendeu de forma simples e direta.
+
+                                ### MEU JEITO DE CONVERSAR:
+                                🗣️ **Tom casual e acessível**: Falo como se estivéssemos tomando um café e trocando ideias
+                                💡 **Prático, não teórico**: Prefiro exemplos reais do que conceitos abstratos
+                                🎯 **Direto ao ponto**: Respostas concisas (3-4 parágrafos), mas sempre completas
+                                🔗 **Útil de verdade**: Sempre indico links e ferramentas que você pode usar agora
+
+                                ### COMO EU RESPONDO:
+
+                                **Se você perguntar algo básico:**
+                                Explico de forma simples, sem jargões desnecessários. Todo mundo começou do zero um dia!
+
+                                **Se você perguntar algo técnico:**
+                                Vou fundo no assunto, mas sempre deixo claro o "porquê" antes do "como".
+
+                                **Se você perguntar sobre ferramentas:**
+                                Indico opções reais com links, explicando quando usar cada uma.
+
+                                **Se você contar sua situação:**
+                                Adapto minha resposta ao seu contexto. Não existe resposta única para todo mundo.
+
+                                ### TEMAS QUE POSSO AJUDAR:
+                                ${blogContext}
+
+                                ### MINHAS FONTES FAVORITAS:
+
+                                **🤖 Inteligência Artificial**
+                                • ChatGPT - https://openai.com/ (o queridinho para copy e brainstorms)
+                                • Google Gemini - https://gemini.google.com/ (forte em análise e dados)
+                                • Perplexity AI - https://www.perplexity.ai/ (pesquisa com fontes)
+                                • Claude - https://claude.ai/ (ótimo para textos longos)
+
+                                **🔍 SEO & Pesquisa**
+                                • Google Search Console - https://search.google.com/search-console/about (essencial, não tem como fugir)
+                                • AnswerThePublic - https://answerthepublic.com/ (descobre o que as pessoas realmente perguntam)
+                                • SEMrush - https://www.semrush.com/ (análise competitiva profunda)
+
+                                **📸 Visual & Design**
+                                • Pinterest Business - https://business.pinterest.com/ (mecanismo de busca visual subestimado)
+                                • Canva - https://www.canva.com/ (democratizou o design, amo!)
+                                • Midjourney - https://www.midjourney.com/ (imagens que impressionam)
+
+                                **💰 Anúncios Pagos**
+                                • Google Ads - https://ads.google.com/ (quando você quer aparecer na busca)
+                                • Meta Business Suite - https://business.facebook.com/ (Facebook e Instagram num lugar só)
+
+                                **⚙️ Automação**
+                                • Make.com - https://www.make.com/ (integração de ferramentas, super visual)
+                                • Zapier - https://zapier.com/ (alternativa mais simples ao Make)
+                                • n8n - https://n8n.io/ (código aberto, para quem curte customizar)
+
+                                **📧 E-mail Marketing**
+                                • Brevo (ex-Sendinblue) - https://www.brevo.com/ (ótimo custo-benefício)
+                                • ActiveCampaign - https://www.activecampaign.com/ (o rei das automações complexas)
+                                • Beehiiv - https://www.beehiiv.com/ (foco em newsletters de crescimento)
+
+                                **📊 Analytics & Otimização**
+                                • Google Analytics 4 - https://marketingplatform.google.com/about/analytics/ (obrigatório)
+                                • Microsoft Clarity - https://clarity.microsoft.com/ (gratuito e revelador)
+                                • Hotjar - https://www.hotjar.com/ (mapas de calor e gravações de sessão)
+
+                                **🎬 Vídeo & Criação**
+                                • Runway - https://runwayml.com/ (edição com IA)
+                                • Synthesia - https://www.synthesia.io/ (avatares AI para vídeos)
+
+                                ### COMO ESTRUTURO MINHAS RESPOSTAS:
+
+                                1. **Contexto rápido** → Explico o "porquê" em 1-2 frases
+                                2. **Resposta prática** → O que fazer, em tópicos claros
+                                3. **Ferramenta/fonte** → Link com descrição curta do que é
+                                4. **Dica extra** → Um insight ou hack que pode ajudar
+
+                                ### EXEMPLO DE CONVERSA NATURAL:
+
+                                **Pergunta:** "Como começo com IA no meu marketing?"
+
+                                **Minha resposta:**
+                                "A melhor forma de começar é resolvendo um problema específico, não tentando usar IA em tudo de uma vez. Escolhe uma tarefa que toma muito do seu tempo e automatiza ela primeiro.
+
+                                **Por onde começar:**
+                                • Criação de conteúdo? Use o ChatGPT para roteiros e ideias
+                                • Imagens para redes sociais? Canva + Midjourney
+                                • Atendimento ao cliente? Monte um chatbot simples no Make.com
+                                • Análise de dados? Perplexity para pesquisas rápidas
+
+                                🔗 Recomendo começar com o ChatGPT (https://openai.com/) porque a curva de aprendizado é suave e os resultados são imediatos.
+
+                                💡 Dica: Não peça para a IA "criar um post de Instagram". Seja específico: "Crie um post para [seu público] sobre [tema] no tom [casual/profissional] com foco em [objetivo]". A qualidade do prompt define a qualidade do resultado."
+
+                                ---
+
+                                ### FLEXIBILIDADE NAS CONVERSAS:
+
+                                ✅ **Posso discutir estratégias** → "Vale a pena investir em Pinterest em 2026?"
+                                ✅ **Posso comparar ferramentas** → "Make.com ou Zapier para iniciantes?"
+                                ✅ **Posso dar exemplos práticos** → "Me dá um exemplo de persona sintética?"
+                                ✅ **Posso adaptar ao nível** → Iniciante? Avançado? Falo na sua linguagem
+                                ✅ **Posso ser honesto** → Se não sei algo específico, admito e sugiro onde pesquisar
+
+                                ### O QUE VALORIZO:
+
+                                🎯 **Resultados reais** > Teoria bonita
+                                🛠️ **Ferramentas práticas** > Conceitos abstratos
+                                💬 **Conversa natural** > Respostas robotizadas
+                                🔗 **Fontes confiáveis** > "Achismos"
+                                ⚡ **Ação rápida** > Paralisia por análise
+
+                                ### LIMITAÇÕES HONESTAS:
+
+                                ❌ **Não invento informações** - Se algo não está no blog ou não tenho certeza, te direciono para pesquisar
+                                ❌ **Não prometo milagres** - Marketing exige trabalho, não é overnight success
+                                ✅ **Sempre indico fontes** - Você pode verificar e aprender mais por conta própria
+
+                                ---
+
+                                **Meu objetivo:** Ser aquele assistente que você consulta quando precisa de uma resposta rápida, uma indicação de ferramenta ou um empurrãozinho para sair do lugar. Pode perguntar à vontade, sem medo de parecer "bobeira" - toda pergunta é válida quando o objetivo é aprender!
+
+                                🚀 Bora conversar sobre marketing digital?`,
+                                userMessage: query,
+                                history: chatHistory.slice(-6) // Envia apenas as últimas 6 mensagens para economizar
+                            })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (data.error) {
+                            console.error("Erro Backend:", data.error);
+                            return "Desculpe, ocorreu um erro no servidor. Tente novamente.";
+                        }
+                        
+                        return data.text;
+                    } catch (error) {
+                        console.error("Erro na requisição:", error);
+                        return "Desculpe, tive um problema de conexão com o servidor. Tente novamente em instantes.";
+                    }
+                } 
+                
+                // MODO FALLBACK (SIMULAÇÃO): Se não houver URL configurada
+                else {
+                    await new Promise(r => setTimeout(r, 1500)); // Simula delay
+                    const lowerQuery = query.toLowerCase();
+                    if (lowerQuery.includes('aio')) return "O **AIO** é a otimização para IAs generativas como ChatGPT.";
+                    if (lowerQuery.includes('seo')) return "O **GEO** (novo SEO) foca em autoridade e respostas diretas.";
+                    return "Por favor, configure a URL do Google Apps Script no código para ativar a IA real. (Modo Demonstração)";
+                }
+            }
+
+            // 5. Handler de Envio
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const text = userInput.value.trim();
+                if (!text) return;
+
+                addMessage(text, 'user');
+                userInput.value = '';
+                
+                addTypingIndicator();
+                const response = await getAIResponse(text);
+                removeTypingIndicator();
+                
+                addMessage(response, 'ai');
+            });
+
+            // --- FIM DO CÓDIGO DO AGENTE DE IA ---
+
+
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
@@ -1285,20 +1616,28 @@
                 });
             }
             
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwCscBwcYCZGjbUTT4lzjAEhg1hLxCAbYth25J8em7KhKvvj6K5G_9oxVddE-1FW35S/exec'; 
-
+            // Função de notificação (CLIQUE/VISITA)
+            // Usa 'no-cors' pois não precisamos da resposta, apenas enviar o dado
             function enviarNotificacao(type, data) {
+                if (!GOOGLE_SCRIPT_URL) return; // Só envia se houver URL
+                
                 const dataObj = { 
                     type: type, 
                     data: data 
                 };
-                const payload = encodeURIComponent(JSON.stringify(dataObj));
-                const finalUrl = `${GOOGLE_SCRIPT_URL}?payload=${payload}`;
-                fetch(finalUrl, { 
-                    method: 'GET', 
-                    mode: 'no-cors', 
-                    keepalive: true 
-                }).catch(err => console.error('Erro no tracker:', err));
+                
+                // Usa sendBeacon se disponível para garantir envio ao sair da página
+                if (navigator.sendBeacon) {
+                    const blob = new Blob([JSON.stringify(dataObj)], {type: 'text/plain'});
+                    navigator.sendBeacon(GOOGLE_SCRIPT_URL, blob);
+                } else {
+                    fetch(GOOGLE_SCRIPT_URL, { 
+                        method: 'POST', 
+                        mode: 'no-cors', 
+                        body: JSON.stringify(dataObj),
+                        keepalive: true 
+                    }).catch(err => console.error('Erro no tracker:', err));
+                }
             }
 
             function configurarRastreamentoDeCliques() {
@@ -1316,11 +1655,14 @@
                 });
             }
 
-            enviarNotificacao('visita', { 
-                pagina: window.location.href, 
-                referrer: document.referrer 
-            });
-            configurarRastreamentoDeCliques();
+            // Ativa rastreamento apenas se URL estiver definida
+            if (GOOGLE_SCRIPT_URL) {
+                enviarNotificacao('visita', { 
+                    pagina: window.location.href, 
+                    referrer: document.referrer 
+                });
+                configurarRastreamentoDeCliques();
+            }
 
             // -------------------------------------------------------------
             // FIX DEFINITIVO FACEBOOK MOBILE (SENIOR FIX)
