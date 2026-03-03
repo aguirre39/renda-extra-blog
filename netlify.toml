@@ -39,19 +39,19 @@
 # ===========================================================
 
 [[redirects]]
-  from = "/blog/guia-marketing-digital-2026/"
+  from = "/blog-guia-marketing-digital-2026/"
   to = "https://marketingdig.netlify.app/"
   status = 200
   force = true
 
 [[redirects]]
-  from = "/blog/guia-marketing-digital-2026/"
+  from = "/blog-guia-marketing-digital-2026/"
   to = "https://marketingdig.netlify.app/"
   status = 200
   force = true
 
 [[redirects]]
-  from = "/blog/guia-marketing-digital-2026/*"
+  from = "/blog-guia-marketing-digital-2026/*"
   to = "https://marketingdig.netlify.app/:splat"
   status = 200
   force = true
