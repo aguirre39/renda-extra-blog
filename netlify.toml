@@ -1,0 +1,131 @@
+# ARQUIVO: netlify.toml
+# Localização: Raiz do seu projeto principal
+
+# -----------------------------------------------------------
+# ARQUIVO DE CONFIGURAÇÃO NETLIFY - ROTEAMENTO AVANÇADO
+# Objetivo: Servir múltiplos sites externos dentro do domínio principal
+# Status 200 = Proxy (Mantém a URL original no navegador)
+# -----------------------------------------------------------
+
+# ===========================================================
+# 1. PROJETO: CORAÇÃO BLINDADO
+# ===========================================================
+
+# Regra para a Raiz (Acesso direto à pasta)
+[[redirects]]
+  from = "/coracao_blindado"
+  to = "https://coracaoblindado2.netlify.app/"
+  status = 200
+  force = true
+
+# Regra para a Raiz com barra (Segurança extra)
+[[redirects]]
+  from = "/coracao_blindado/"
+  to = "https://coracaoblindado2.netlify.app/"
+  status = 200
+  force = true
+
+# Regra CRÍTICA: Carregamento de Ativos (Imagens, Vídeos, CSS, JS)
+# Captura qualquer arquivo dentro da pasta e busca no servidor de origem
+[[redirects]]
+  from = "/coracao_blindado/*"
+  to = "https://coracaoblindado2.netlify.app/:splat"
+  status = 200
+  force = true
+
+
+# ===========================================================
+# 2. PROJETO: BLOG MARKETING
+# ===========================================================
+
+[[redirects]]
+  from = "/blog/guia-marketing-digital-2026/"
+  to = "https://marketingdig.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/blog/guia-marketing-digital-2026/"
+  to = "https://marketingdig.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/blog/guia-marketing-digital-2026/*"
+  to = "https://marketingdig.netlify.app/:splat"
+  status = 200
+  force = true
+
+
+# ===========================================================
+# 3. PROJETO: EMAGRECIMENTO PROFITNESS (VSL Principal)
+# ===========================================================
+
+[[redirects]]
+  from = "/emagrecimento_imediato_profitness"
+  to = "https://emagrecimento-profit.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/emagrecimento_imediato_profitness/"
+  to = "https://emagrecimento-profit.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/emagrecimento_imediato_profitness/*"
+  to = "https://emagrecimento-profit.netlify.app/:splat"
+  status = 200
+  force = true
+
+
+# ===========================================================
+# 4. PROJETO: ISCA 10 RECEITAS (Funil de Entrada)
+# ===========================================================
+
+[[redirects]]
+  from = "/10receitas_profitness_gratis"
+  to = "https://isca10receitasgratis.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/10receitas_profitness_gratis/"
+  to = "https://isca10receitasgratis.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/10receitas_profitness_gratis/*"
+  to = "https://isca10receitasgratis.netlify.app/:splat"
+  status = 200
+  force = true
+
+
+# ===========================================================
+# 5. PROJETO: Site profitness para anuncio
+# ===========================================================
+
+[[redirects]]
+  from = "/metodo-profitness-vitalidade"
+  to = "https://metodo-profitness-vitalidade.netlify.app/"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/metodo-profitness-vitalidade/*"
+  to = "https://metodo-profitness-vitalidade.netlify.app/:splat"
+  status = 200
+  force = true
+
+
+# ===========================================================
+# 5. ROTA PADRÃO (FALLBACK)
+# ===========================================================
+
+# Qualquer rota não listada acima cairá na index do site principal
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
