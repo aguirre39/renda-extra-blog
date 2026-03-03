@@ -1,35 +1,3 @@
 
 
-# ===========================================================
-# 2. PROJETO: BLOG MARKETING
-# ===========================================================
 
-[[redirects]]
-  from = "/blog/guia-marketing-digital-2026"
-  to = "https://marketing-blog-dig.netlify.app/"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/blog/guia-marketing-digital-2026/"
-  to = "https://marketing-blog-dig.netlify.app/"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/https://marketing-blog-dig.netlify.app/*"
-  to = "https://marketing-blog-dig.netlify.app/:splat"
-  status = 200
-  force = true
-
-
-
-# ===========================================================
-# 5. ROTA PADRÃO (FALLBACK)
-# ===========================================================
-
-# Qualquer rota não listada acima cairá na index do site principal
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
